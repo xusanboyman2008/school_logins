@@ -2,7 +2,7 @@ from sqlalchemy import Column, Integer, String, select, Boolean
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, AsyncAttrs
 from sqlalchemy.orm import DeclarativeBase
 
-DATABASE_URL = "postgresql://school_logins_user:mXpppLVXokYQkU8Owz6G0iVWeOOcGzUv@dpg-cu97jet6l47c73d72m2g-a.oregon-postgres.render.com/school_logins"
+DATABASE_URL = "postgresql+asyncpg://school_logins_user:mXpppLVXokYQkU8Owz6G0iVWeOOcGzUv@dpg-cu97jet6l47c73d72m2g-a.oregon-postgres.render.com/school_logins"
 # DATABASE_URL = "sqlite+aiosqlite:///database.sqlite3"
 engine = create_async_engine(DATABASE_URL)
 async_session = async_sessionmaker(engine)
