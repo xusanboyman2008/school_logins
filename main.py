@@ -47,7 +47,7 @@ def grade_buttons():
 @dp.message(CommandStart())
 async def start(message: Message, state: FSMContext):
     await message.answer(
-        f"Hello {message.from_user.first_name}! Welcome to the bot.\n Botga Login qoshish uchun\nadd login(1):parol(1),login(2):parol(2)")
+        f"Hello {message.from_user.first_name}! Welcome to the bot {message.from_user.first_name}.\nBotga Login va parol  qoshish uchun shu usulda foydalaning\n\n👇👇👇👇👇👇👇👇👇👇👇👇👇add login(1):parol(1),login(2):parol(2)")
 
 
 @dp.message(F.text.startswith("add"))
