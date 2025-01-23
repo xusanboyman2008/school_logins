@@ -12,7 +12,7 @@ from models import init, create_or_update_user, get_user, get_login
 from request_login import login_main, login
 
 # Load sensitive data from environment variables (use dotenv or similar library)
-BOT_TOKEN = '7874928619:AAHdmduqLLfYUQF-Tgw_aXYcMp41X3maLTc'
+BOT_TOKEN = '7374450108:AAFP-xIaDYflJwsihKjbhvxgjuOhkmm8dA0'
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher(storage=MemoryStorage())
 
