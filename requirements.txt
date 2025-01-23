@@ -1,0 +1,14 @@
+psycopg2
+aiogram
+SQLAlchemy
+aiofiles
+aiohttp
+aiosqlite
+asgiref
+asyncpg
+psycopg
+psycopg-binary
+psycopg-pool
+pure-python-adb
+requests
+sqlparse
