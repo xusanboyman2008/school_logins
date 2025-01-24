@@ -11,5 +11,9 @@ flask
 psycopg-binary
 psycopg-pool
 pure-python-adb
-requests
+requests~=2.32.3
 sqlparse
+
+Django
+pytz
+APScheduler
