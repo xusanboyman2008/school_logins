@@ -1,10 +1,353 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logins Table</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
+            margin: 0;
+            padding: 0;
+        }
+
+        h3 {
+            margin-bottom: 1rem;
+            color: #333;
+            text-align: center;
+        }
+
+        /* Table Container */
+        .table-container {
+            margin: auto;
+            margin-top: 5%;
+            width: 90%;
+            max-width: 1200px;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        thead {
+            background: #007bff;
+            color: #ffffff;
+        }
+
+        th, td {
+            padding: 14px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        tbody tr:hover {
+            background: rgba(0, 123, 255, 0.1);
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 10px 16px;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s ease;
+        }
+
+        .btn-add {
+            background: #28a745;
+        }
+
+        .btn-add:hover {
+            background: #218838;
+        }
+
+        .btn-edit {
+            background: #ffc107;
+        }
+
+        .btn-edit:hover {
+            background: #e0a800;
+        }
+
+        /* Modal */
+        .form-container {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 30px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .form-container.show {
+            display: block;
+            opacity: 1;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 5;
+        }
+
+        .overlay.show {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn-close, .btn-save {
+            padding: 12px 16px;
+            font-size: 14px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .btn-close {
+            background: #ccc;
+            color: #fff;
+        }
+
+        .btn-close:hover {
+            background: #aaa;
+        }
+
+        .btn-save {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-save:hover {
+            background: #218838;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #007bff;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 15;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .table-container {
+                width: 95%;
+                padding: 10px;
+            }
+
+            table {
+                font-size: 12px;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+
+            .btn {
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+
+            .form-container {
+                width: 90%;
+                padding: 20px;
+            }
+
+            .form-group input {
+                padding: 10px;
+                font-size: 14px;
+            }
+
+            .btn-save, .btn-close {
+                padding: 10px 12px;
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            th, td {
+                font-size: 10px;
+                padding: 6px;
+            }
+
+            .btn {
+                font-size: 10px;
+                padding: 6px 8px;
+            }
+
+            .form-container {
+                width: 100%;
+                padding: 10px;
+            }
+
+            .form-group input {
+                font-size: 12px;
+                padding: 8px;
+            }
+        }
+    </style>
 </head>
 <body>
-{{}}
+
+<div id="body" style="">
+    <div class="loading">Loading...</div>
+
+    <div class="overlay" onclick="hideModal()" aria-hidden="true"></div>
+
+    <form id="modal-form" action="/create_login" method="POST">
+        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+        <div class="form-container" id="modal">
+            <div style="display: flex;align-items: center;justify-content: center;scale: 1.8;margin-bottom: 50px"><h3
+                    id="modal-title" class="modal-header" style="">Edit Login</h3>
+            </div>
+            <div class="form-group">
+                <label for="modal-login" style="margin-bottom: 5px">Login:</label>
+                <input type="text" id="modal-login" name="login" placeholder="Loginni kiriting" required>
+            </div>
+            <div class="form-group">
+                <label for="modal-password">Parol:</label>
+                <input type="text" id="modal-password" name="password" placeholder="Parollni kiriting" required>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-close" onclick="hideModal()">Close</button>
+                <button type="submit" class="btn btn-save">Save</button>
+            </div>
+        </div>
+    </form>
+
+    <div class="table-container">
+        <div style="padding-bottom: 10px; text-align: right;">
+            <button class="btn btn-add" onclick="showModal()">Add New Login</button>
+        </div>
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Login</th>
+                <th>Parol</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody id="logins-table">
+            {% for login in page_obj %}
+                {% if not login.status %}
+                <tr id="row-{{ login.id }}">
+                    <td id="id-{{ login.id }}">{{ login.id }}</td>
+                    <td id="login-{{ login.id }}">{{ login.login }}</td>
+                    <td id="password-{{ login.id }}">{{ login.password }}</td>
+                    {% if login.status %}
+                        <td>✔️</td>
+                    {% else %}
+                        <td>❌</td>{% endif %}
+                    <td>
+                        <button class="btn btn-edit" onclick="editLogin({{ login.id }})">Edit</button>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            <div class="pagination">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1" class="btn">First</a>
+                    <a href="?page={{ page_obj.previous_page_number }}" class="btn">Previous</a>
+                {% endif %}
+
+                <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}" class="btn">Next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}" class="btn">Last</a>
+                {% endif %}
+            </div>
+        </table>
+    </div>
+    <script>
+        let currentEditId = null;
+
+        function showModal(id = null) {
+            const form = document.getElementById('modal-form');
+            const title = document.getElementById('modal-title');
+            const loginField = document.getElementById('modal-login');
+            const passwordField = document.getElementById('modal-password');
+
+            document.querySelector('.overlay').classList.add('show');
+            document.getElementById('modal').classList.add('show');
+            currentEditId = id;
+
+            if (id) {
+                form.action = `/update_login/${id}/`;
+                title.innerText = "Edit Login";
+                loginField.value = document.getElementById(`login-${id}`).innerText;
+                passwordField.value = document.getElementById(`password-${id}`).innerText;
+            } else {
+                form.action = '/create_login/';
+                title.innerText = "Add New Login";
+                loginField.value = "";
+                passwordField.value = "";
+            }
+        }
+
+        function hideModal() {
+            document.querySelector('.overlay').classList.remove('show');
+            document.getElementById('modal').classList.remove('show');
+            document.querySelector('.loading').style.display = 'none';
+        }
+
+        function editLogin(id) {
+            showModal(id);
+        }
+    </script>
+
+</div>
+
+
 </body>
-</html>
