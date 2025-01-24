@@ -1,13 +1,15 @@
 import asyncio
-from time import sleep
 
+import pytz
 from aiogram import Bot, Dispatcher, F
 from aiogram.filters import CommandStart
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import StatesGroup, State
 from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
+from keep_alive import keep_alive
 from models import init, create_or_update_user, get_user, get_login
 from request_login import login_main, login
 
@@ -15,6 +17,7 @@ from request_login import login_main, login
 BOT_TOKEN = "7374450108:AAFP-xIaDYflJwsihKjbhvxgjuOhkmm8dA0"
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher(storage=MemoryStorage())
+UZBEKISTAN_TZ = pytz.timezone("Asia/Tashkent")
 
 
 class Register(StatesGroup):
@@ -54,7 +57,7 @@ async def start(message: Message, state: FSMContext):
 async def add(message: Message):
     try:
         if not ":" in message.text:
-            await message.answer("Iltimos pasdagi korinishda  yozing\n add login:parol,login:parol")
+            await message.answer("Iltimos pasdagi korinishda  yozing\n add login    2):parol1,login2:parol2")
             return
         data = message.text.split("add")[1].strip().split(",")
         ready = await login_main(data, tg_id=message.from_user.id)
@@ -102,44 +105,37 @@ async def data(message: Message):
             text=f"ID: {i.id}\nLogin: {i.login} parol: {i.password}\n🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵")
 
 
-@dp.message(F.text == ">:)")
-async def start2(message: Message):
-    log = await login()
-    user_id = await get_user()
-    for user in user_id:
-        await bot.send_message(
-            text=f"Kirish oxshamagan loginlar:  {log[0]}\nMuaffaqiyatli kirilgan loginlar soni:  {log[1]}",
-            chat_id=user)
-        await message.answer(text="Sizga kunlik malumot kelsinmi?", reply_markup=InlineKeyboardMarkup(inline_keyboard=[
-            [InlineKeyboardButton(text="Ha ✅", callback_data="t_yes"),
-             InlineKeyboardButton(text="Yo`q ❌", callback_data="t_no")]]))
-    for i in range(0, 730, 1):
-        print(i)
-        sleep(60 * 60 * 12)
+scheduler = AsyncIOScheduler()
+
+
+# Function to send daily updates at 8:00 AM
+async def send_daily_update():
+    print("Sending daily update...")  # Debug message to confirm the function is called
+    try:
         log = await login()
-        user_id = await get_user()
-        for user in user_id:
+        user_ids = await get_user()
+        for user_id in user_ids:
             await bot.send_message(
-                text=f"Kirish oxshamagan loginlar:  {log[0]}\nMuaffaqiyatli kirilgan loginlar soni:  {log[1]}",
-                chat_id=user)
-            await message.answer(text="Sizga kunlik malumot kelsinmi?", reply_markup=InlineKeyboardMarkup(
-                inline_keyboard=[[InlineKeyboardButton(text="Ha ✅", callback_data="t_yes"),
-                                  InlineKeyboardButton(text="Yo`q ❌", callback_data="t_no")]]))
-
-from flask import Flask
-
-app = Flask(__name__)
-
-@app.route("/")
-def home():
-    return "Bot is running!", 200
-
-def keep_alive(host="0.0.0.0", port=8080):
-    app.run(host=host, port=port)
+                text=f"Kirish oxshamagan loginlar ❌: {log[0]}\nMuaffaqiyatli kirilgan loginlar soni ✅: {log[1]}",
+                chat_id=user_id
+            )
+    except Exception as e:
+        print(f"Error sending daily update: {e}")
 
 
 async def main():
-    await init()
+    await init()  # Initialize your database and models
+
+    # Schedule the daily job at 8:00 AM Uzbekistan time
+    scheduler.add_job(
+        send_daily_update,
+        trigger="cron",
+        hour=8,
+        minute=0,
+        timezone=UZBEKISTAN_TZ,
+    )
+    scheduler.start()
+
     await dp.start_polling(bot, skip_updates=True)
 
 
