@@ -100,9 +100,11 @@ async def test(data: int, tg_id):
 async def data(message: Message):
     data = await get_login()
     await message.answer(text=f"Jami {len(data)} dona login bor")
+    text = ''
     for i in data:
-        await message.answer(
-            text=f"ID: {i.id}\nLogin: {i.login} parol: {i.password}\n🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵")
+            text+=f"ID: {i.id}\nLogin: {i.login} parol: {i.password}\n🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵\n"
+    await message.answer(text=text)
+
 
 
 scheduler = AsyncIOScheduler()
