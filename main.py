@@ -47,7 +47,7 @@ def grade_buttons():
 @dp.message(CommandStart())
 async def start(message: Message, state: FSMContext):
     await message.answer(
-        f"Hello {message.from_user.first_name}! Welcome to the bot {message.from_user.first_name}.\nBotga Login va parol  qoshish uchun shu usulda foydalaning\n\n👇👇👇👇👇👇👇👇👇👇👇👇👇add login(1):parol(1),login(2):parol(2)")
+        f"Hello ! Welcome to the bot {message.from_user.first_name}.\nBotga Login va parol  qoshish uchun shu usulda foydalaning\n\n👇👇👇👇👇👇👇👇👇👇👇👇👇\nadd login(1):parol(1),login(2):parol(2)")
 
 
 @dp.message(F.text.startswith("add"))
@@ -66,48 +66,76 @@ async def add(message: Message):
                     await message.answer(text=f"Successful logins count✅: {ready[1]} \nSuccessful logins: {ready[3]}")
             await message.answer(text=f"{text}")
         await message.answer(text=f"successful logins number ✅ {ready[1]}")
-        await message.answer(text="Sizga kunlik malumot kelsinmi?",reply_markup=InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text="Ha ✅",callback_data="t_yes"),InlineKeyboardButton(text="Yo`q ❌",callback_data="t_no")]]))
+        await message.answer(text="Sizga kunlik malumot kelsinmi?", reply_markup=InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton(text="Ha ✅", callback_data="t_yes"),
+             InlineKeyboardButton(text="Yo`q ❌", callback_data="t_no")]]))
 
     except Exception as error:
         await message.answer(f"An error occurred: {str(error)}")
         print(f"Error in 'add' function: {error}")
 
+
 @dp.callback_query(F.data.startswith("t"))
-async def t_yes(callback_data:CallbackQuery):
+async def t_yes(callback_data: CallbackQuery):
     data = callback_data.data.split("t_")[1]
     if data == "yes":
-        await create_or_update_user(name=callback_data.from_user.first_name,tg_id=str(callback_data.from_user.id),sending=True)
+        await create_or_update_user(name=callback_data.from_user.first_name, tg_id=str(callback_data.from_user.id),
+                                    sending=True)
     else:
-        await create_or_update_user(name=callback_data.from_user.first_name,tg_id=str(callback_data.from_user.id),sending=False)
+        await create_or_update_user(name=callback_data.from_user.first_name, tg_id=str(callback_data.from_user.id),
+                                    sending=False)
     await callback_data.message.delete()
-    await callback_data.answer(text="Siz xabar jonatishni tastiqladingiz ✅",show_alert=True)
+    await callback_data.answer(text="Siz xabar jonatishni tastiqladingiz ✅", show_alert=True)
+
 
 async def test(data: int, tg_id):
     data = data
     await bot.send_message(text=f"{data}", chat_id=tg_id)
 
-@dp.message(F.text=="data")
+
+@dp.message(F.text == "data")
 async def data(message: Message):
     data = await get_login()
     await message.answer(text=f"Jami {len(data)} dona login bor")
     for i in data:
-        await message.answer(text=f"ID: {i.id}\nLogin: {i.login} parol: {i.password}\n🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵")
+        await message.answer(
+            text=f"ID: {i.id}\nLogin: {i.login} parol: {i.password}\n🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵")
 
-@dp.message(F.text==">:)")
+
+@dp.message(F.text == ">:)")
 async def start2(message: Message):
     log = await login()
     user_id = await get_user()
     for user in user_id:
-        await bot.send_message(text=f"Kirish oxshamagan loginlar:  {log[0]}\nMuaffaqiyatli kirilgan loginlar soni:  {log[1]}",chat_id=user)
-        await message.answer(text="Sizga kunlik malumot kelsinmi?",reply_markup=InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text="Ha ✅",callback_data="t_yes"),InlineKeyboardButton(text="Yo`q ❌",callback_data="t_no")]]))
-    for i in range(0,730,1):
+        await bot.send_message(
+            text=f"Kirish oxshamagan loginlar:  {log[0]}\nMuaffaqiyatli kirilgan loginlar soni:  {log[1]}",
+            chat_id=user)
+        await message.answer(text="Sizga kunlik malumot kelsinmi?", reply_markup=InlineKeyboardMarkup(inline_keyboard=[
+            [InlineKeyboardButton(text="Ha ✅", callback_data="t_yes"),
+             InlineKeyboardButton(text="Yo`q ❌", callback_data="t_no")]]))
+    for i in range(0, 730, 1):
         print(i)
-        sleep(60*60*12)
+        sleep(60 * 60 * 12)
         log = await login()
         user_id = await get_user()
         for user in user_id:
-            await bot.send_message(text=f"Kirish oxshamagan loginlar:  {log[0]}\nMuaffaqiyatli kirilgan loginlar soni:  {log[1]}",chat_id=user)
-            await message.answer(text="Sizga kunlik malumot kelsinmi?",reply_markup=InlineKeyboardMarkup(inline_keyboard=[[InlineKeyboardButton(text="Ha ✅",callback_data="t_yes"),InlineKeyboardButton(text="Yo`q ❌",callback_data="t_no")]]))
+            await bot.send_message(
+                text=f"Kirish oxshamagan loginlar:  {log[0]}\nMuaffaqiyatli kirilgan loginlar soni:  {log[1]}",
+                chat_id=user)
+            await message.answer(text="Sizga kunlik malumot kelsinmi?", reply_markup=InlineKeyboardMarkup(
+                inline_keyboard=[[InlineKeyboardButton(text="Ha ✅", callback_data="t_yes"),
+                                  InlineKeyboardButton(text="Yo`q ❌", callback_data="t_no")]]))
+
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return "Bot is running!", 200
+
+def keep_alive(host="0.0.0.0", port=8080):
+    app.run(host=host, port=port)
 
 
 async def main():
@@ -117,6 +145,7 @@ async def main():
 
 if __name__ == "__main__":
     try:
+        keep_alive()
         asyncio.run(main())
     except KeyboardInterrupt:
         print("\nGoodbye!")

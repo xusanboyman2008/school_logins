@@ -7,6 +7,7 @@ aiosqlite
 asgiref
 asyncpg
 psycopg
+flask
 psycopg-binary
 psycopg-pool
 pure-python-adb

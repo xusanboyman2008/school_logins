@@ -5,8 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fe557ad3-ce22-4938-a550-81d3aa83cdff" name="Changes" comment="end">
-      <change afterPath="$PROJECT_DIR$/Logins/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/School/Logins/Templates/Logins/home.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/School/Logins/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/School/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Templates/main.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logins/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/School/Logins/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logins/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/School/Logins/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logins/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/School/Logins/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logins/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/School/Logins/migrations/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logins/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/School/Logins/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logins/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/School/Logins/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logins/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/School/Logins/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logins/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/School/School/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/School/School/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +28,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="HTML File" />
         <option value="Python Script" />
       </list>
     </option>
@@ -57,6 +70,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "master",
@@ -123,7 +137,7 @@
       <workItem from="1737367657761" duration="8000" />
       <workItem from="1737390337316" duration="8000" />
       <workItem from="1737641343471" duration="7992000" />
-      <workItem from="1737685055396" duration="834000" />
+      <workItem from="1737685055396" duration="1693000" />
     </task>
     <task id="LOCAL-00001" summary="end">
       <option name="closed" value="true" />
@@ -173,7 +187,23 @@
       <option name="project" value="LOCAL" />
       <updated>1737685186613</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="end">
+      <option name="closed" value="true" />
+      <created>1737711355157</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1737711355157</updated>
+    </task>
+    <task id="LOCAL-00008" summary="end">
+      <option name="closed" value="true" />
+      <created>1737713612033</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1737713612033</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
