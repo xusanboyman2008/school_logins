@@ -9,8 +9,7 @@ from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
-from keep_alive import keep_alive
-from models import init, create_or_update_user, get_user, get_login
+from models import get_users,create_user, get_login,init
 from request_login import login_main, login
 
 # Load sensitive data from environment variables (use dotenv or similar library)
@@ -27,24 +26,6 @@ class Register(StatesGroup):
     grade_letter = State()
 
 
-def grade_buttons():
-    letters = ["A", "B", "V", "G"]
-    inline_keyboard = []
-    row = []
-
-    for i in range(6, 12):
-        for j in range(len(letters)):
-            row.append(
-                InlineKeyboardButton(text=f"{i} {letters[j]}", callback_data=f"grade.{i}_{letters[j]}")
-            )
-            if len(row) == 4:  # Add the row to the keyboard when it reaches 5 buttons
-                inline_keyboard.append(row)
-                row = []  # Reset the row
-
-    if row:  # Add any remaining buttons to the keyboard
-        inline_keyboard.append(row)
-
-    return InlineKeyboardMarkup(inline_keyboard=inline_keyboard)
 
 
 @dp.message(CommandStart())
@@ -82,10 +63,10 @@ async def add(message: Message):
 async def t_yes(callback_data: CallbackQuery):
     data = callback_data.data.split("t_")[1]
     if data == "yes":
-        await create_or_update_user(name=callback_data.from_user.first_name, tg_id=str(callback_data.from_user.id),
+        await create_user(name=f"{callback_data.from_user.first_name}", tg_id=callback_data.from_user.id,
                                     sending=True)
     else:
-        await create_or_update_user(name=callback_data.from_user.first_name, tg_id=str(callback_data.from_user.id),
+        await create_user(name=callback_data.from_user.first_name, tg_id=callback_data.from_user.id,
                                     sending=False)
     await callback_data.message.delete()
     await callback_data.answer(text="Siz xabar jonatishni tastiqladingiz ✅", show_alert=True)
@@ -115,7 +96,7 @@ async def send_daily_update():
     print("Sending daily update...")  # Debug message to confirm the function is called
     try:
         log = await login()
-        user_ids = await get_user()
+        user_ids = await get_users()
         for user_id in user_ids:
             await bot.send_message(
                 text=f"Kirish oxshamagan loginlar ❌: {log[0]}\nMuaffaqiyatli kirilgan loginlar soni ✅: {log[1]}",
@@ -125,10 +106,7 @@ async def send_daily_update():
         print(f"Error sending daily update: {e}")
 
 
-async def main():
-    await init()  # Initialize your database and models
-
-    # Schedule the daily job at 8:00 AM Uzbekistan time
+async def main2():
     scheduler.add_job(
         send_daily_update,
         trigger="cron",
@@ -136,14 +114,11 @@ async def main():
         minute=0,
         timezone=UZBEKISTAN_TZ,
     )
+    # await init()
     scheduler.start()
 
     await dp.start_polling(bot, skip_updates=True)
 
-
 if __name__ == "__main__":
-    try:
-        keep_alive()
-        asyncio.run(main())
-    except KeyboardInterrupt:
-        print("\nGoodbye!")
+    asyncio.run(main2())
+

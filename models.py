@@ -1,83 +1,78 @@
-from sqlalchemy import Column, Integer, String, select, Boolean
+from sqlalchemy import Column, Integer, Boolean, String, select, BigInteger
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, AsyncAttrs
 from sqlalchemy.orm import DeclarativeBase
 
-DATABASE_URL = "postgresql+asyncpg://school_logins_user:mXpppLVXokYQkU8Owz6G0iVWeOOcGzUv@dpg-cu97jet6l47c73d72m2g-a.oregon-postgres.render.com/school_logins"
+DATABASE_URL = "postgresql+asyncpg://school_api_3_user:lIlmLBoVtBcD6yqJ3AAIFVPsFgi5GkQy@dpg-cuaqparqf0us73cat8fg-a.oregon-postgres.render.com/school_api_3"
 # DATABASE_URL = "sqlite+aiosqlite:///database.sqlite3"
 engine = create_async_engine(DATABASE_URL)
 async_session = async_sessionmaker(engine)
 
 
-# Base model
-class Base(AsyncAttrs, DeclarativeBase):
+class BaseModel(AsyncAttrs, DeclarativeBase):
     pass
 
 
-# Login model
-class Login(Base):
-    __tablename__ = "logins"
-    id = Column(Integer, autoincrement=True, primary_key=True)
-    login = Column(String, nullable=False, unique=True)
-    password = Column(String, nullable=False)
+class User(BaseModel):
+    __tablename__ = 'Logins_user'
+    id = Column(Integer, primary_key=True)
+    tg_id = Column(BigInteger)
+    name = Column(String)
+    sending = Column(Boolean, default=False)
 
 
-class User(Base):
-    __tablename__ = "users"
-    id = Column(Integer, autoincrement=True, primary_key=True)
-    tg_id = Column(String, nullable=False, unique=True)
-    name = Column(String, nullable=False)
-    sending = Column(Boolean, nullable=True, default=False)
+class Login(BaseModel):
+    __tablename__ = 'Logins_logins_model'
+    id = Column(Integer, primary_key=True)
+    login = Column(String)
+    password = Column(String)
+    status = Column(Boolean, default=False)
 
 
-async def create_or_update_user(tg_id: str, name: str, sending: bool):
+async def get_users():
     async with async_session() as session:
-        stmt = select(User).where(User.tg_id == tg_id)
-        result = await session.execute(stmt)
-        user = result.scalar_one_or_none()
-
-        if user:
-            user.sending = sending
-            await session.commit()
-        else:
-            new_user = User(tg_id=tg_id, name=name, sending=sending)
-            session.add(new_user)
-            await session.commit()
-
-
-async def get_user():
-    async with async_session() as session:
-        stmt = select(User.tg_id).where(User.sending == True)
-        result = await session.execute(stmt)
-        users = result.scalars().all()
+        user = await session.execute(select(User))
+        users = user.scalars().all()
         return users
+
+
+async def create_user(tg_id, sending, name):
+    async with async_session() as session:
+        user = await session.execute(select(User).where(User.tg_id == tg_id))
+        user = user.scalar_one_or_none()
+        if user:
+            user.sending = sending  # Update existing user
+        else:
+            user = User(tg_id=tg_id, sending=sending, name=name)  # Fix here
+            session.add(user)  # Add the user to the session
+        await session.commit()
+
+
+
 
 async def get_login():
     async with async_session() as session:
-        stmt = select(Login)
-        result = await session.execute(stmt)
-        users = result.scalars().all()
-        return users
+        result = await session.execute(select(Login))
+        logins = result.scalars().all()
+        return logins
 
 
-
-async def create_login(login: str, password: str):
+async def create_login(login: str, password: str,status:bool):
     async with async_session() as session:
         async with session.begin():
-            result = await session.execute(
-                select(Login).where(Login.login == login)
-            )
-            existing_login = result.scalar_one_or_none()
-
+            existing_login = await session.execute(select(Login).where(Login.login == login))
+            existing_login = existing_login.scalar_one_or_none()
             if existing_login:
                 existing_login.password = password
+                existing_login.status = status
+                session.add(existing_login)
+                await session.commit()
+                return existing_login
             else:
-                new_login = Login(login=login, password=password)
+                new_login = Login(login=login, password=password,status=status)
                 session.add(new_login)
-
-            await session.commit()
-            return existing_login if existing_login else new_login
-
+                await session.commit()
+                return new_login
 
 async def init():
     async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
+        await conn.run_sync(BaseModel.metadata.create_all)
