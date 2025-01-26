@@ -5,24 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fe557ad3-ce22-4938-a550-81d3aa83cdff" name="Changes" comment="as">
-      <change beforePath="$PROJECT_DIR$/.idea/Kundali.com.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Kundali.com.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/5dc16482-3a95-442c-9ab9-5bef805cca3d.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/5dc16482-3a95-442c-9ab9-5bef805cca3d/storage_v2/_src_/schema/main.uQUzAA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/School/Logins/Templates/Logins/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/School/Logins/Templates/Logins/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/School/Logins/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/School/Logins/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/School/Logins/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/School/Logins/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/School/Logins/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/School/Logins/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/School/Logins/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/School/School/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/School/School/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/School/db.sqlite3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/School/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/School/manage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database.sqlite3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/request_login.py" beforeDir="false" afterPath="$PROJECT_DIR$/request_login.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +33,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/School" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -81,8 +65,8 @@
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "django.template.preview.state": "SHOW_EDITOR",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "X:/Kundali.com",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "X:/Kundali.com/School",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -94,14 +78,15 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="X:\Kundali.com\School" />
       <recent name="X:\Kundali.com" />
       <recent name="X:\Kundali.com\School\Logins\Templates\Logins\media" />
       <recent name="X:\Kundali.com\School\Logins\Templates\medi" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="X:\Kundali.com" />
       <recent name="X:\Kundali.com\School\Logins" />
       <recent name="X:\Kundali.com\Templates" />
-      <recent name="X:\Kundali.com" />
       <recent name="X:\Kundali.com\School" />
       <recent name="X:\Kundali.com\School\Logins\Templates\Logins" />
     </key>
@@ -201,7 +186,7 @@
       <workItem from="1737820530364" duration="9000" />
       <workItem from="1737827379851" duration="1774000" />
       <workItem from="1737829430378" duration="4569000" />
-      <workItem from="1737861834452" duration="1915000" />
+      <workItem from="1737861834452" duration="3232000" />
     </task>
     <task id="LOCAL-00001" summary="end">
       <option name="closed" value="true" />
@@ -315,7 +300,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737772424985</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="as">
+      <option name="closed" value="true" />
+      <created>1737867280079</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1737867280079</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

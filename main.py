@@ -9,6 +9,7 @@ from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
+from keep_alive import keep_alive
 from models import get_users,create_user, get_login,init
 from request_login import login_main, login
 
@@ -116,7 +117,7 @@ async def main2():
     )
     # await init()
     scheduler.start()
-
+    keep_alive()
     await dp.start_polling(bot, skip_updates=True)
 
 if __name__ == "__main__":
