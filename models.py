@@ -25,7 +25,7 @@ class Login(BaseModel):
     id = Column(Integer, primary_key=True)
     login = Column(String)
     password = Column(String)
-    status = Column(Boolean, default=False)
+    status = Column(Boolean, default=True)
 
 
 async def get_users():
