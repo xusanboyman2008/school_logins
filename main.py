@@ -84,7 +84,7 @@ async def data(message: Message):
     await message.answer(text=f"Jami {len(data)} dona login bor")
     text = ''
     for i in data:
-            text+=f"ID: {i.id}\nLogin: {i.login} parol: {i.password}\n🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵\n"
+            text+=f"ID: {i.id}\nLogin: {i.login} parol: {i.password} status: {i.status}\n🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵\n"
     await message.answer(text=text)
 
 
