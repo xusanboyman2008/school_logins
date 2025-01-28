@@ -107,6 +107,9 @@ async def send_daily_update():
     except Exception as e:
         print(f"Error sending daily update: {e}")
 
+@dp.message(F.text=='login')
+async def login3():
+    await send_daily_update()
 
 async def main2():
     scheduler.add_job(

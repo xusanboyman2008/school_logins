@@ -8,7 +8,7 @@ headers = {
 
 async def login():
     wrong_logins = []
-    l = 1
+    l = 0
     for login in await get_login():
         if login:
             r = requests.post(url, headers=headers, data={"login": login.login, "password": login.password})
