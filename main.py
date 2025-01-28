@@ -8,13 +8,14 @@ from aiogram.fsm.state import StatesGroup, State
 from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
+from apscheduler.triggers.interval import IntervalTrigger
 
 from keep_alive import keep_alive
-from models import get_users,create_user, get_login,init
+from models import get_users, create_user, get_login, init, get_login1
 from request_login import login_main, login
 
 # Load sensitive data from environment variables (use dotenv or similar library)
-BOT_TOKEN = "7374450108:AAFP-xIaDYflJwsihKjbhvxgjuOhkmm8dA0"
+BOT_TOKEN = "7374450108:AAFCROf3uosXOHkm93cQ23a5Zx7XXI7dJRQ"
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher(storage=MemoryStorage())
 UZBEKISTAN_TZ = pytz.timezone("Asia/Tashkent")
@@ -80,7 +81,7 @@ async def test(data: int, tg_id):
 
 @dp.message(F.text == "data")
 async def data(message: Message):
-    data = await get_login()
+    data = await get_login1()
     await message.answer(text=f"Jami {len(data)} dona login bor")
     text = ''
     for i in data:

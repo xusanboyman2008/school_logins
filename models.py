@@ -20,6 +20,7 @@ class User(BaseModel):
     sending = Column(Boolean, default=False)
 
 
+
 class Login(BaseModel):
     __tablename__ = 'Logins_logins_model'
     id = Column(Integer, primary_key=True)
@@ -30,7 +31,7 @@ class Login(BaseModel):
 
 async def get_users():
     async with async_session() as session:
-        user = await session.execute(select(User))
+        user = await session.execute(select(User.tg_id).where(User.sending==True))
         users = user.scalars().all()
         return users
 
@@ -50,6 +51,12 @@ async def create_user(tg_id, sending, name):
 
 
 async def get_login():
+    async with async_session() as session:
+        result = await session.execute(select(Login))
+        logins = result.scalars().all()
+        return logins
+
+async def get_login1():
     async with async_session() as session:
         result = await session.execute(select(Login))
         logins = result.scalars().all()
