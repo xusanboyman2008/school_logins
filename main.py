@@ -43,7 +43,7 @@ async def add(message: Message):
             await message.answer("Iltimos pasdagi korinishda  yozing\n add login    2):parol1,login2:parol2")
             return
         data = message.text.split("add")[1].strip().split(",")
-        ready = await login_main(data, tg_id=message.from_user.id)
+        ready = await login_main(data)
         if len(ready[0]) != 0:
             text = f"❗️❗️❗️Wrong logins (Notogri loginlar login yoki parrol xato bolishi aniq xazilmas) ❗️❗️❗️\n"
             for i in ready[0]:

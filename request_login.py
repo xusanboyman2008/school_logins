@@ -13,7 +13,7 @@ async def login():
         if login:
             r = requests.post(url, headers=headers, data={"login": login.login, "password": login.password})
             if len(r.cookies) == 1:
-                wrong_logins.append(f"Login: {login.login} 🔑 Password: {login.password}\n")
+                wrong_logins.append(f"Login: {login.login} 🔑 Password: {login.password}")
                 await create_login(login=login.login, password=login.password,status=False)
         else:
                 await create_login(login=login.login, password=login.password,status=True)
