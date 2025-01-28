@@ -108,7 +108,7 @@ async def send_daily_update():
         print(f"Error sending daily update: {e}")
 
 @dp.message(F.text=='login')
-async def login3():
+async def logins_all(message:Message):
     await send_daily_update()
 
 async def main2():
