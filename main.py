@@ -8,10 +8,9 @@ from aiogram.fsm.state import StatesGroup, State
 from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
-from apscheduler.triggers.interval import IntervalTrigger
 
 from keep_alive import keep_alive
-from models import get_users, create_user, get_login, init, get_login1
+from models import get_users, create_user, get_login1
 from request_login import login_main, login
 
 # Load sensitive data from environment variables (use dotenv or similar library)
@@ -110,6 +109,23 @@ async def send_daily_update():
 @dp.message(F.text=='login')
 async def logins_all(message:Message):
     await send_daily_update()
+
+
+@dp.message(F.text=='send')
+async def send_all_users(message: Message):
+    for i in await get_users():
+        if message.text:
+            message = await bot.send_message(text=message.text, chat_id=i)
+        if message.photo:
+            message = await bot.send_photo(caption=message.text, chat_id=i,    photo=message.photo[-1].file_id)
+        if message.sticker:
+            message = await bot.send_sticker(chat_id=i, sticker=message.sticker.file_id)
+        if message.video:
+            message = await bot.send_video(video=message.video[-1].file_id, chat_id=i)
+        if message.audio:
+            message = await bot.send_audio(audio=message.audio[-1].file_id, chat_id=i)
+
+
 
 async def main2():
     scheduler.add_job(
