@@ -40,7 +40,7 @@ async def start(message: Message, state: FSMContext):
 async def add(message: Message):
     try:
         if not ":" in message.text:
-            await message.answer("Iltimos pasdagi korinishda  yozing\n add login    2):parol1,login2:parol2")
+            await message.answer("Iltimos pasdagi korinishda  yozing\n add login1:parol1,login2:parol2 ")
             return
         data = message.text.split("add")[1].strip().split(",")
         ready = await login_main(data)
@@ -113,9 +113,9 @@ async def logins_all(message:Message):
 
 
 @dp.message(F.text=='send')
-async def send_all_users(message: Message,satate:FSMContext):
+async def send_all_users(message: Message,state:FSMContext):
     await message.answer('nima jonatsangiz ham jonating')
-    await satate.set_state(Send.starr)
+    await state.set_state(Send.starr)
 
 @dp.message(Send.starr)
 async def starr(message: Message, state: FSMContext):
