@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe557ad3-ce22-4938-a550-81d3aa83cdff" name="Changes" comment="as">
+    <list default="true" id="fe557ad3-ce22-4938-a550-81d3aa83cdff" name="Changes" comment="asasdasda">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,7 +202,7 @@
       <workItem from="1738260538472" duration="442000" />
       <workItem from="1738318584686" duration="34000" />
       <workItem from="1738318634102" duration="27000" />
-      <workItem from="1738327583888" duration="4351000" />
+      <workItem from="1738327583888" duration="4668000" />
     </task>
     <task id="LOCAL-00001" summary="end">
       <option name="closed" value="true" />
@@ -491,7 +492,23 @@
       <option name="project" value="LOCAL" />
       <updated>1738333166885</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="as">
+      <option name="closed" value="true" />
+      <created>1738334079567</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1738334079567</updated>
+    </task>
+    <task id="LOCAL-00038" summary="asasdasda">
+      <option name="closed" value="true" />
+      <created>1738334359816</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1738334359816</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -500,6 +517,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="end" />
     <MESSAGE value="as" />
-    <option name="LAST_COMMIT_MESSAGE" value="as" />
+    <MESSAGE value="asasdasda" />
+    <option name="LAST_COMMIT_MESSAGE" value="asasdasda" />
   </component>
 </project>

@@ -14,7 +14,7 @@ from models import get_users, create_user, get_login1, get_users_all
 from request_login import login_main, login
 
 # Load sensitive data from environment variables (use dotenv or similar library)
-BOT_TOKEN = "7374450108:AAFCROf3uosXOHkm93cQ23a5Zx7XXI7dJRQ"
+BOT_TOKEN = "7374450108:AAGHnVj318Lrq9SO4h2ER_XgXQxlCPKL6h8"
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher(storage=MemoryStorage())
 UZBEKISTAN_TZ = pytz.timezone("Asia/Tashkent")
