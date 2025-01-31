@@ -2,6 +2,7 @@ import asyncio
 
 import pytz
 from aiogram import Bot, Dispatcher, F
+from aiogram.exceptions import TelegramBadRequest
 from aiogram.filters import CommandStart
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import StatesGroup, State
@@ -14,7 +15,7 @@ from models import get_users, create_user, get_login1, get_users_all
 from request_login import login_main, login
 
 # Load sensitive data from environment variables (use dotenv or similar library)
-BOT_TOKEN = "7374450108:AAGHnVj318Lrq9SO4h2ER_XgXQxlCPKL6h8"
+BOT_TOKEN = "7374450108:AAFUyClfVQcb46SwqTbnSVHVvIltO9MhPCs"
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher(storage=MemoryStorage())
 UZBEKISTAN_TZ = pytz.timezone("Asia/Tashkent")
@@ -32,6 +33,9 @@ class Send(StatesGroup):
 
 @dp.message(CommandStart())
 async def start(message: Message, state: FSMContext):
+    await create_user(name=f"{message.from_user.first_name}", tg_id=message.from_user.id,
+                      sending=False)
+    print(message.message_id)
     await message.answer(
         f"Hello ! Welcome to the bot {message.from_user.first_name}.\nBotga Login va parol  qoshish uchun shu usulda foydalaning\n\n👇👇👇👇👇👇👇👇👇👇👇👇👇\nadd login(1):parol(1),login(2):parol(2)")
 
@@ -119,7 +123,7 @@ async def send_all_users(message: Message, state: FSMContext):
 
 @dp.message(Send.starr)
 async def starr(message: Message, state: FSMContext):
-    users = await get_users()  # Get the list of users
+    users = await get_users_all()  # Get the list of users
     if not users:
         await message.answer("No users found.")
         await state.clear()
@@ -131,7 +135,9 @@ async def starr(message: Message, state: FSMContext):
         elif message.photo:
             await bot.send_photo(caption=message.text, chat_id=user_id, photo=message.photo[-1].file_id)
         elif message.sticker:
-            await bot.send_sticker(chat_id=user_id, sticker=message.sticker.file_id)
+            for i in range(740,810):
+                print(i,user_id)
+                await bot.send_sticker(chat_id=user_id, sticker=message.sticker.file_id)
         elif message.video:
             await bot.send_video(video=message.video[-1].file_id, chat_id=user_id)
         elif message.audio:
