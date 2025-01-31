@@ -35,6 +35,13 @@ async def get_users():
         users = user.scalars().all()
         return users
 
+async def get_users_all():
+    async with async_session() as session:
+        user = await session.execute(select(User.tg_id))
+        users = user.scalars().all()
+        return users
+
+
 
 async def create_user(tg_id, sending, name):
     async with async_session() as session:

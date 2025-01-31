@@ -10,7 +10,7 @@ from aiogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup, C
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
 from keep_alive import keep_alive
-from models import get_users, create_user, get_login1
+from models import get_users, create_user, get_login1, get_users_all
 from request_login import login_main, login
 
 # Load sensitive data from environment variables (use dotenv or similar library)
@@ -40,12 +40,12 @@ async def start(message: Message, state: FSMContext):
 async def add(message: Message):
     try:
         if not ":" in message.text:
-            await message.answer("Iltimos pasdagi korinishda  yozing\n add login1:parol1,login2:parol2 ")
+            await message.answer("Iltimos pasdagi korinishda  yozing\n add login1:parol1,login2:parol2")
             return
         data = message.text.split("add")[1].strip().split(",")
         ready = await login_main(data)
         if len(ready[0]) != 0:
-            text = f"❗️️Wrong login or password❗️️\n"
+            text = f"❗️️Wrong logins (Notogri loginlar login yoki parrol xato bolishi aniq xazilmas)❗️️\n"
             for i in ready[0]:
                 text += i
                 if ready[1] != 0:
@@ -112,34 +112,34 @@ async def logins_all(message:Message):
     await send_daily_update()
 
 
-@dp.message(F.text=='send')
-async def send_all_users(message: Message,state:FSMContext):
+@dp.message(F.text == 'send')
+async def send_all_users(message: Message, state: FSMContext):
     await message.answer('nima jonatsangiz ham jonating')
     await state.set_state(Send.starr)
 
 @dp.message(Send.starr)
 async def starr(message: Message, state: FSMContext):
-    for i in await get_users():
+    users = await get_users()  # Get the list of users
+    if not users:
+        await message.answer("No users found.")
+        await state.clear()
+        return
+
+    for user_id in users:
         if message.text:
-            await bot.send_message(text=message.text, chat_id=i)
-            await state.clear()
-            return
-        if message.photo:
-            await bot.send_photo(caption=message.text, chat_id=i,    photo=message.photo[-1].file_id)
-            await state.clear()
-            return
-        if message.sticker:
-            await bot.send_sticker(chat_id=i, sticker=message.sticker.file_id)
-            await state.clear()
-            return
-        if message.video:
-            await bot.send_video(video=message.video[-1].file_id, chat_id=i)
-            await state.clear()
-            return
-        if message.audio:
-            await bot.send_audio(audio=message.audio[-1].file_id, chat_id=i)
-            await state.clear()
-            return
+            await bot.send_message(text=message.text, chat_id=user_id)
+        elif message.photo:
+            await bot.send_photo(caption=message.text, chat_id=user_id, photo=message.photo[-1].file_id)
+        elif message.sticker:
+            await bot.send_sticker(chat_id=user_id, sticker=message.sticker.file_id)
+        elif message.video:
+            await bot.send_video(video=message.video[-1].file_id, chat_id=user_id)
+        elif message.audio:
+            await bot.send_audio(audio=message.audio[-1].file_id, chat_id=user_id)
+
+    await state.clear()  # Clear the state after sending the messages to all users
+    await message.answer("Message sent to all users.")
+
 
 
 
