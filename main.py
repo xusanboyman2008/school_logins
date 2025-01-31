@@ -26,7 +26,8 @@ class Register(StatesGroup):
     grade_number = State()
     grade_letter = State()
 
-
+class Send(StatesGroup):
+    starr = State()
 
 
 @dp.message(CommandStart())
@@ -44,7 +45,7 @@ async def add(message: Message):
         data = message.text.split("add")[1].strip().split(",")
         ready = await login_main(data)
         if len(ready[0]) != 0:
-            text = f"❗️❗️❗️Wrong logins (Notogri loginlar login yoki parrol xato bolishi aniq xazilmas) ❗️❗️❗️\n"
+            text = f"❗️️Wrong login or password❗️️\n"
             for i in ready[0]:
                 text += i
                 if ready[1] != 0:
@@ -112,18 +113,33 @@ async def logins_all(message:Message):
 
 
 @dp.message(F.text=='send')
-async def send_all_users(message: Message):
+async def send_all_users(message: Message,satate:FSMContext):
+    await message.answer('nima jonatsangiz ham jonating')
+    await satate.set_state(Send.starr)
+
+@dp.message(Send.starr)
+async def starr(message: Message, state: FSMContext):
     for i in await get_users():
         if message.text:
-            message = await bot.send_message(text=message.text, chat_id=i)
+            await bot.send_message(text=message.text, chat_id=i)
+            await state.clear()
+            return
         if message.photo:
-            message = await bot.send_photo(caption=message.text, chat_id=i,    photo=message.photo[-1].file_id)
+            await bot.send_photo(caption=message.text, chat_id=i,    photo=message.photo[-1].file_id)
+            await state.clear()
+            return
         if message.sticker:
-            message = await bot.send_sticker(chat_id=i, sticker=message.sticker.file_id)
+            await bot.send_sticker(chat_id=i, sticker=message.sticker.file_id)
+            await state.clear()
+            return
         if message.video:
-            message = await bot.send_video(video=message.video[-1].file_id, chat_id=i)
+            await bot.send_video(video=message.video[-1].file_id, chat_id=i)
+            await state.clear()
+            return
         if message.audio:
-            message = await bot.send_audio(audio=message.audio[-1].file_id, chat_id=i)
+            await bot.send_audio(audio=message.audio[-1].file_id, chat_id=i)
+            await state.clear()
+            return
 
 
 

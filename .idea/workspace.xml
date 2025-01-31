@@ -5,13 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fe557ad3-ce22-4938-a550-81d3aa83cdff" name="Changes" comment="as">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/280ab74a-8404-4001-a6ea-d32df740cefe.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/280ab74a-8404-4001-a6ea-d32df740cefe/storage_v2/_src_/schema/main.uQUzAA.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database.sqlite3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test1.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/School/Logins/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/School/Logins/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/School/Logins/templates/Logins/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/School/Logins/templates/Logins/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/School/Logins/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/School/Logins/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/request_login.py" beforeDir="false" afterPath="$PROJECT_DIR$/request_login.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/School/Logins/templates/Logins/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/School/Logins/templates/Logins/login.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +38,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/School" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -71,7 +70,7 @@
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;django.template.preview.state&quot;: &quot;SHOW_EDITOR&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;last_opened_file_path&quot;: &quot;X:/Smart english bot for xasanboy&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -197,6 +196,16 @@
       <workItem from="1737903044451" duration="12925000" />
       <workItem from="1737944267601" duration="16804000" />
       <workItem from="1738030942808" duration="394000" />
+      <workItem from="1738054792401" duration="2880000" />
+      <workItem from="1738067004953" duration="1449000" />
+      <workItem from="1738071267274" duration="10000" />
+      <workItem from="1738145852021" duration="361000" />
+      <workItem from="1738249583160" duration="68000" />
+      <workItem from="1738254262782" duration="4552000" />
+      <workItem from="1738260538472" duration="442000" />
+      <workItem from="1738318584686" duration="34000" />
+      <workItem from="1738318634102" duration="27000" />
+      <workItem from="1738327583888" duration="3215000" />
     </task>
     <task id="LOCAL-00001" summary="end">
       <option name="closed" value="true" />
@@ -398,7 +407,87 @@
       <option name="project" value="LOCAL" />
       <updated>1738031374274</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="as">
+      <option name="closed" value="true" />
+      <created>1738054911220</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1738054911220</updated>
+    </task>
+    <task id="LOCAL-00027" summary="as">
+      <option name="closed" value="true" />
+      <created>1738067270700</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1738067270700</updated>
+    </task>
+    <task id="LOCAL-00028" summary="as">
+      <option name="closed" value="true" />
+      <created>1738070040332</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1738070040332</updated>
+    </task>
+    <task id="LOCAL-00029" summary="as">
+      <option name="closed" value="true" />
+      <created>1738070280712</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1738070280712</updated>
+    </task>
+    <task id="LOCAL-00030" summary="as">
+      <option name="closed" value="true" />
+      <created>1738070477009</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1738070477009</updated>
+    </task>
+    <task id="LOCAL-00031" summary="as">
+      <option name="closed" value="true" />
+      <created>1738145910665</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1738145910665</updated>
+    </task>
+    <task id="LOCAL-00032" summary="as">
+      <option name="closed" value="true" />
+      <created>1738146210094</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1738146210094</updated>
+    </task>
+    <task id="LOCAL-00033" summary="as">
+      <option name="closed" value="true" />
+      <created>1738249644252</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1738249644252</updated>
+    </task>
+    <task id="LOCAL-00034" summary="as">
+      <option name="closed" value="true" />
+      <created>1738254360942</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1738254360942</updated>
+    </task>
+    <task id="LOCAL-00035" summary="as">
+      <option name="closed" value="true" />
+      <created>1738259169346</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1738259169346</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
