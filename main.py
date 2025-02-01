@@ -49,7 +49,7 @@ async def add(message: Message):
         data = message.text.split("add")[1].strip().split(",")
         ready = await login_main(data)
         if len(ready[0]) != 0:
-            text = f"❗️️Wrong logins (Notogri loginlar login yoki parrol xato bolishi aniq xazilmas)❗️️\n"
+            text = f"❗️❗️❗️️Wrong logins or password❗️❗️❗️️\n"
             for i in ready[0]:
                 text += i
                 if ready[1] != 0:
@@ -105,7 +105,7 @@ async def send_daily_update():
         user_ids = await get_users()
         for user_id in user_ids:
             await bot.send_message(
-                text=f"Kirish oxshamagan loginlar ❌: {log[0]}\nMuaffaqiyatli kirilgan loginlar soni ✅: {log[1]}",
+                text=f"Kirish oxshamagan loginlar ❌: {log[0]}\nMuaffaqiyatli kirilgan loginlar soni ✅: {log[1]}\n",
                 chat_id=user_id
             )
     except Exception as e:
