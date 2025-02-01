@@ -17,6 +17,7 @@ class User(BaseModel):
     id = Column(Integer, primary_key=True)
     tg_id = Column(BigInteger)
     name = Column(String)
+    role = Column(String,default='user')
     sending = Column(Boolean, default=False)
 
 
@@ -31,7 +32,7 @@ class Login(BaseModel):
 
 async def get_users():
     async with async_session() as session:
-        user = await session.execute(select(User.tg_id).where(User.sending==True))
+        user = await session.execute(select(User).where(User.sending==True))
         users = user.scalars().all()
         return users
 
