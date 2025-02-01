@@ -49,7 +49,7 @@ async def create_user(tg_id, sending, name):
         user = await session.execute(select(User).where(User.tg_id == tg_id))
         user = user.scalar_one_or_none()
         if user:
-            user.sending = sending  # Update existing user
+            user.sending = sending
         else:
             user = User(tg_id=tg_id, sending=sending, name=name)  # Fix here
             session.add(user)  # Add the user to the session

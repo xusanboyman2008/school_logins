@@ -15,7 +15,7 @@ from models import get_users, create_user, get_login1, get_users_all
 from request_login import login_main, login
 
 # Load sensitive data from environment variables (use dotenv or similar library)
-BOT_TOKEN = "7374450108:AAFUyClfVQcb46SwqTbnSVHVvIltO9MhPCs"
+BOT_TOKEN = "7374450108:AAFkVaTl4gpTnjzsS1bgm5IN4AAiXBgKVhQ"
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher(storage=MemoryStorage())
 UZBEKISTAN_TZ = pytz.timezone("Asia/Tashkent")
@@ -35,7 +35,6 @@ class Send(StatesGroup):
 async def start(message: Message, state: FSMContext):
     await create_user(name=f"{message.from_user.first_name}", tg_id=message.from_user.id,
                       sending=False)
-    print(message.message_id)
     await message.answer(
         f"Hello ! Welcome to the bot {message.from_user.first_name}.\nBotga Login va parol  qoshish uchun shu usulda foydalaning\n\n👇👇👇👇👇👇👇👇👇👇👇👇👇\nadd login(1):parol(1),login(2):parol(2)")
 
