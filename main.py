@@ -96,10 +96,14 @@ async def data(message: Message):
 scheduler = AsyncIOScheduler()
 
 
+
+@dp.message(F.text=='login')
+async def logins_all(message:Message):
+    await send_daily_update()
+    await message.answer('Stated logining')
+
 # Function to send daily updates at 8:00 AM
 async def send_daily_update():
-    print("Sending daily update...")  # Debug message to confirm the function is called
-    try:
         log = await login()
         user_ids = await get_users()
         for user_id in user_ids:
@@ -108,9 +112,6 @@ async def send_daily_update():
                     chat_id=user_id
                     )
 
-@dp.message(F.text=='login')
-async def logins_all(message:Message):
-    await send_daily_update()
 
 
 @dp.message(F.text == 'send')
