@@ -17,7 +17,6 @@ async def login():
             else:
                 await create_login(login=login.login, password=login.password,status=True)
                 l += 1
-    print(wrong_logins,l)
     return wrong_logins, l
 
 

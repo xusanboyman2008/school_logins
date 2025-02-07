@@ -3,6 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Logins Table</title>
+    <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
     <style>
         .overlay {
             z-index: 20; /* Ensure overlay is on top of everything */
@@ -12,8 +13,14 @@
             z-index: 30; /* Ensure modal is on top */
         }
 
+        * {
+            width: auto;
+        }
+
         /* General Styles */
         body {
+            overflow-x: hidden;
+            overflow-y: hidden;
             font-family: Arial, sans-serif;
             background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
             margin: 0;
@@ -104,6 +111,11 @@
             transition: opacity 0.3s ease-in-out;
         }
 
+        .form-container.show {
+            display: block;
+            opacity: 1;
+        }
+
         .overlay {
             display: none;
             position: fixed;
@@ -115,6 +127,10 @@
             z-index: 5;
         }
 
+        .overlay.show {
+            display: block;
+        }
+
         .form-group {
             margin-bottom: 20px;
         }
@@ -123,7 +139,6 @@
             width: 100%;
             padding: 12px;
             font-size: 16px;
-            border: 1px solid #ddd;
             border-radius: 8px;
             transition: all 0.3s;
         }
@@ -163,36 +178,68 @@
             background: #218838;
         }
 
-        .loading {
-            display: none;
-            text-align: center;
-            font-size: 18px;
-            font-weight: bold;
-            color: #007bff;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 15;
-        }
 
         /* Responsive Styles */
         @media (max-width: 768px) {
             .table-container {
-                width: 95%;
+                width: 161%;
                 padding: 10px;
+            }
+
+            .sss {
+                margin-top: 47px !important;
+                margin-bottom: -60px !important;
+            }
+
+            .btn-add {
+                scale: 1 !important;
             }
 
             table {
                 font-size: 12px;
+                scale: 0.9;
+                margin-left: -10px;
+            }
+
+            * {
+                font-size: 22px;
+            }
+
+            #canvas {
+                position: fixed;
+                width: 100%;
+                height: 200%;
+            }
+
+            .table-container {
+                scale: 0.8;
+                margin-left: -30px;
+                width: 110%;
+            }
+
+            .btn {
+                scale: 0.7;
+            }
+
+            span {
+                scale: 0.7;
             }
 
             th, td {
                 padding: 8px;
+                font-size: 22px;
+            }
+
+            tr {
+                font-size: 22px;
+            }
+
+            td div {
+                gap: 0% !important;
+                padding-left: 20px;
             }
 
             .btn {
-                padding: 8px 12px;
                 font-size: 12px;
             }
 
@@ -218,10 +265,24 @@
                 padding: 6px;
             }
 
-            .btn {
-                font-size: 10px;
-                padding: 6px 8px;
+            #canvas {
+                width: 90%;
             }
+
+
+            #modal {
+                width: 80%;
+            }
+
+            #modal input, select, option {
+                width: 87%;
+            }
+
+            #modal button {
+                width: 30%;
+                height: 30%;
+            }
+
 
             .form-container {
                 width: 100%;
@@ -248,6 +309,7 @@
         .option:hover {
             background: red;
         }
+
         #canvas {
             position: absolute;
             top: 0;
@@ -259,11 +321,10 @@
 
         /* Apply a blur effect to the canvas */
         canvas {
-            position: fixed;
             top: 0;
             left: 0;
             z-index: 0; /* Keep canvas behind other content */
-            filter: blur(10px); /* This will blur the canvas */
+            filter: blur(3px); /* This will blur the canvas */
             pointer-events: none; /* Prevent canvas from interacting with clicks */
         }
 
@@ -289,17 +350,110 @@
             background: rgba(0, 123, 255, 0.2); /* Example hover effect */
         }
 
+        p {
+            color: white;
+        }
+
+
         .toggle-container label {
             font-size: 16px;
+        }
+
+
+        th {
+            border: 1px solid #5c5a5a;
+        }
+
+        td {
+            border: 1px solid rgba(66, 63, 63, 0.5);
+            color: white;
+        }
+
+        span {
+            color: white;
+        }
+
+        #modal {
+            background: black;
+        }
+
+        label {
+            color: white;
+        }
+
+        input {
+            background: #201e1e;
+            border: 1px solid #686868;
+        }
+
+        .btn btn-edit:hover {
+            background: #e0a800;
+        }
+
+        .btn-close {
+            background: rgb(72, 78, 81);
+        }
+
+        .btn-close:hover {
+            background: #aaa;
+        }
+
+
+        input::placeholder {
+            color: #6e6d6d;
+        }
+
+        select:optional {
+            color: #f4eded;
+            background-color: #717171;
+        }
+
+        h3 {
+            color: white;
+        }
+
+        input {
+            color: white;
+        }
+
+        .btn btn-edit {
+            background: rgba(255, 255, 0, 0.49);
+            scale: 1.2;
+        }
+
+        select {
+            color: white;
+            background: rgba(138, 137, 137, 0.38);
+            border: 1px solid rgba(156, 152, 152, 0.5);
+
+        }
+
+
+        @media (max-width: 360px) {
+            #canvas {
+                position: fixed;
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+
+        .d {
+            font-size: 150%;
         }
     </style>
 </head>
 <canvas id="canvas" style="z-index: 1" width="1400" height="600"></canvas>
-
 <body>
-
+<div id="loading" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+    <div class="spinner"
+         style="border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; width: 50px; height: 50px; animation: spin 2s linear infinite;"></div>
+</div>
+<div class="made"
+     style="position: fixed;bottom: 3px;display: flex;justify-content: center;width: 90%;color: #ff6600;z-index: 1000">
+    <h2>Made by Xusanboy</h2></div>
 <div id="body" style="z-index: 10">
-    <div class="loading">Loading...</div>
+
 
     <div class="overlay" onclick="hideModal()" aria-hidden="true"></div>
 
@@ -330,16 +484,26 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-close" onclick="hideModal()">Close</button>
-                <button type="submit" class="btn btn-save">Save</button>
+                <button type="button" class="btn btn-close d" onclick="hideModal()">Close</button>
+                <button type="submit" class="btn btn-save d">Save</button>
             </div>
         </div>
     </form>
+    <div style="position: relative;width: 71.7%;display: flex;align-items: center;justify-content: center;scale: 1.8;margin-bottom: 50px">
+        {% if not request.user.is_authenticated %}
+            <a href="{% url 'login' %}" style="color: rgba(33,187,221,0.44);text-decoration: none">.</a>
+        {% else %}
+            <a href="{% url 'logout' %}" style="color: rgba(33,187,221,0.44);text-decoration: none">.</a>
+        {% endif %}
+    </div>
 
-    <div class="table-container">
-        <div style="padding-bottom: 10px; text-align: right;">
-            <button class="btn btn-add" onclick="showModal()">Add New Login</button>
-        </div>
+    <div class="table-container" style="background: rgba(0, 0, 0, 0.65);margin-top: -10px">
+
+        {% if request.user.is_authenticated %}
+            <div style="padding-bottom: 10px; text-align: right;">
+                <button class="btn btn-add" onclick="showModal()">Add New Login</button>
+            </div>
+        {% endif %}
         <table>
             <thead>
             <tr>
@@ -347,55 +511,82 @@
                 <th>Login</th>
                 <th>Parol</th>
                 <th>Status</th>
-                <th>Actions</th>
+                {% if request.user.is_authenticated %}
+                    <th>Actions</th>
+                {% endif %}
             </tr>
             </thead>
             <tbody id="logins-table">
             {% for login in page_obj %}
                 {% if not login.status %}
-                    <tr style="background: #fd4343" id="row-{{ login.id }}">
-                        <td id="id-{{ login.id }}">{{ login.id }}</td>
-                        <td id="login-{{ login.id }}">{{ login.login }}</td>
+                <tr style="background: #a30202" id="row-{{ login.id }}">
+                    <td id="id-{{ login.id }}">{{ login.id }}</td>
+                    <td id="login-{{ login.id }}">{{ login.login }}</td>
+                    {% if request.user.is_authenticated %}
                         <td id="password-{{ login.id }}">{{ login.password }}</td>
+                    {% else %}
+                        <td id="password-{{ login.id }}">********</td>
+                        {% endif %}
                         <td>❌</td>
-                        <td>
-                            <button class="btn btn-edit" onclick="editLogin({{ login.id }})">Edit</button>
-                        </td>
-                    </tr>
-                {% else %}
-                    <tr id="row-{{ login.id }}">
-                        <td id="id-{{ login.id }}">{{ login.id }}</td>
-                        <td id="login-{{ login.id }}">{{ login.login }}</td>
-                        <td id="password-{{ login.id }}">{{ login.password }}</td>
-                        <td>✔️</td>
-                        <td>
-                            <button class="btn btn-edit" onclick="editLogin({{ login.id }})">Edit</button>
-                        </td>
-                    </tr>
-                {% endif %}
+                        {% if request.user.is_authenticated %}
+                            <td>
+                                <div style="display: flex;align-items: center;justify-content: center;scale:1.2;gap:20px">
+                                    <button class="btn btn-edit" onclick="editLogin({{ login.id }})">Edit</button>
+                                    <form method="POST" action="/delete/{{ login.id }}">
+                                        {% csrf_token %}
+                                        <button class="btn btn-edit" style="background: red"
+                                                onclick="deleteLogin({{ login.id }})">Delete
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        {% endif %}
+                        </tr>
+                    {% else %}
+                        <tr id="row-{{ login.id }}">
+                            <td id="id-{{ login.id }}">{{ login.id }}</td>
+                            <td id="login-{{ login.id }}">{{ login.login }}</td>
+                            {% if request.user.is_authenticated %}
+                                <td id="password-{{ login.id }}">{{ login.password }}</td>
+                            {% else %}
+                            <td id="password-{{ login.id }}">********</td>
+                                {% endif %}
+                            <td>✔️</td>
+                            {% if request.user.is_authenticated %}
+                                <td>
+                                    <div style="display: flex;align-items: center;justify-content: center;scale:1.2;gap:20px">
+                                        <button class="btn btn-edit" onclick="editLogin({{ login.id }})">Edit</button>
+                                        <button class="btn btn-edit" style="background: red"
+                                                onclick="deleteLogin({{ login.id }})">Delete
+                                        </button>
+                                    </div>
+                                </td>
+                            {% endif %}
+                        </tr>
+                    {% endif %}
 
             {% endfor %}
             <div class="pagination">
                 <span>{{ page_obj.number }} - Sahifa</span>
 
                 {% if page_obj.has_previous %}
-                    <a href="?page=1" class="btn option">Oldingisi</a>
                     <a href="?page={{ page_obj.previous_page_number }}"
-                       class="btn option">Keyingisi</a>
+                       class="btn option">Oldingi</a>
                 {% endif %}
 
 
                 {% if page_obj.has_next %}
-                    {#                    <a href="?page={{ page_obj.next_page_number }}" class="btn">Keyingi</a>#}
-                    <a href="?page={{ page_obj.paginator.num_pages }}" class="btn option">Keyingi</a>
+                    <a href="?page={{ page_obj.next_page_number }}" class="btn option">Keyingi</a>
+                    {#                    <a href="?page={{ page_obj.paginator.num_pages }}" class="btn option">Keyingi</a>#}
                 {% endif %}
             </div>
-
+            <div class="sss" style="display:flex;align-items: center;justify-content: center;"><span
+                    style="background:rgb(63,63,228);border-radius: 10px;color:white;padding:10px;margin-top: -20px;margin-bottom: 20px">Jami {{ all }} dan {{ valid }} tasi ishlamoqda</span>
+            </div>
             </tbody>
         </table>
     </div>
     <script>
-
         let currentEditId = null;
 
         function showModal(id = null) {
@@ -430,6 +621,7 @@
         function editLogin(id) {
             showModal(id);
         }
+
         var canvas = document.getElementById("canvas");
 
         canvas.width = window.innerWidth;
@@ -437,7 +629,7 @@
 
         // Initialize the GL context
         var gl = canvas.getContext('webgl');
-        if(!gl){
+        if (!gl) {
             console.error("Unable to initialize WebGL.");
         }
 
@@ -511,10 +703,10 @@ void main(){
 
         //************** Utility functions **************
 
-        window.addEventListener( 'resize', onWindowResize, false );
+        window.addEventListener('resize', onWindowResize, false);
 
-        function onWindowResize(){
-            canvas.width  = window.innerWidth;
+        function onWindowResize() {
+            canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
             gl.viewport(0, 0, canvas.width, canvas.height);
             gl.uniform1f(widthHandle, window.innerWidth);
@@ -523,11 +715,11 @@ void main(){
 
 
         //Compile shader and combine with source
-        function compileShader(shaderSource, shaderType){
+        function compileShader(shaderSource, shaderType) {
             var shader = gl.createShader(shaderType);
             gl.shaderSource(shader, shaderSource);
             gl.compileShader(shader);
-            if(!gl.getShaderParameter(shader, gl.COMPILE_STATUS)){
+            if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
                 throw "Shader compile failed with: " + gl.getShaderInfoLog(shader);
             }
             return shader;
@@ -567,9 +759,9 @@ void main(){
 
         //Set up rectangle covering entire canvas
         var vertexData = new Float32Array([
-            -1.0,  1.0, 	// top left
+            -1.0, 1.0, 	// top left
             -1.0, -1.0, 	// bottom left
-            1.0,  1.0, 	// top right
+            1.0, 1.0, 	// top right
             1.0, -1.0, 	// bottom right
         ]);
 
@@ -601,11 +793,11 @@ void main(){
         var lastFrame = Date.now();
         var thisFrame;
 
-        function draw(){
+        function draw() {
 
             //Update time
             thisFrame = Date.now();
-            time += (thisFrame - lastFrame)/770;
+            time += (thisFrame - lastFrame) / 770;
             lastFrame = thisFrame;
 
             //Send uniforms to program
@@ -617,8 +809,13 @@ void main(){
         }
 
         draw();
-    </script>
 
+        let a = window.Telegram.WebApp?.initData?.id
+        window.Telegram.WebApp?.expand()
+        window.Telegram.WebApp?.isFullscreen(true)
+        window.Telegram.WebApp?.requestFullscreen()
+        console.log(a)
+    </script>
 </div>
 
 
