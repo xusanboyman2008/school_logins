@@ -16,7 +16,7 @@ from request_login import login_main, login
 
 # Load sensitive data from environment variables (use dotenv or similar library)
 # BOT_TOKEN = "7894961736:AAGwAqAzmoMdUYye1-CuU9sf5Db-iKeVdmQ"
-BOT_TOKEN = "7374450108:AAFkVaTl4gpTnjzsS1bgm5IN4AAiXBgKVhQ"
+BOT_TOKEN = "7374450108:AAFEg4iriMNqGiHk09Z3TJ_JCYuLZMOleLE"
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher(storage=MemoryStorage())
 UZBEKISTAN_TZ = pytz.timezone("Asia/Tashkent")
@@ -162,7 +162,7 @@ async def main2():
     )
     await init()
     scheduler.start()
-    # keep_alive()
+    keep_alive()
     await dp.start_polling(bot, skip_updates=True)
 
 if __name__ == "__main__":
