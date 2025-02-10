@@ -9,7 +9,7 @@ from aiogram.filters import CommandStart
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import StatesGroup, State
 from aiogram.fsm.storage.memory import MemoryStorage
-from aiogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
+from aiogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery, BotCommand
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
 from keep_alive import keep_alive
@@ -36,6 +36,11 @@ class Send(StatesGroup):
 
 @dp.message(CommandStart())
 async def start(message: Message, state: FSMContext):
+    commands = [
+        BotCommand(command="/start", description="Botni boshlash"),
+        BotCommand(command="/help", description="Yordam olish")
+    ]
+    await bot.set_my_commands(commands=commands)
     await create_user(name=f"{message.from_user.first_name}", tg_id=message.from_user.id,
                       sending=False)
     await message.answer(
@@ -49,6 +54,7 @@ async def add(message: Message):
             await message.answer("Iltimos pasdagi korinishda  yozing\n add login1:parol1,login2:parol2")
             return
         data = message.text.split("add")[1].strip().split(",")
+        await message.answer(text=f'Jami {len(data)} login uchun taxminan {len(data)*3} sekund 🕔 vaqt ketadi')
         ready = await login_main(data)
         if len(ready[0]) != 0:
             text = f"❗️❗️❗️️Wrong logins or password❗️❗️❗️️\n"
