@@ -94,7 +94,9 @@ async def data(message: Message):
             text+=f"ID: {i.id}\nLogin: {i.login} parol: {i.password} status: {i.status}\n🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵🪵\n"
     await message.answer(text=text)
 
-
+@dp.message(F.text == "/help")
+async def help(message: Message):
+    await message.answer(text='Agarda sizning savollaringiz bolsa 👇 Bot yaratuvchisiga yozing\n<a href="https://t.me/xusanboyman200/">Admin</a>',parse_mode="HTML")
 
 scheduler = AsyncIOScheduler()
 
