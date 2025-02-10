@@ -1,4 +1,7 @@
 import asyncio
+
+from aiogram.exceptions import TelegramBadRequest
+
 from models import init
 import pytz
 from aiogram import Bot, Dispatcher, F
@@ -102,16 +105,19 @@ async def send_daily_update():
         log = await login()
         user_ids = await get_users()
         for user_id in user_ids:
-            if user_id.role == 'Admin':
-                await bot.send_message(
-                text=f"Kirish oxshamagan loginlar soni ❌: {len(log[0])}\nMuaffaqiyatli kirilgan loginlar soni ✅: {log[1]}\nKirilmagan loginlar\n\n{log[0]}",
-                chat_id=user_id.tg_id
-            )
-            else:
-                await bot.send_message(
-                text=f"Kirish oxshamagan loginlar soni ❌: {len(log[0])}\nMuaffaqiyatli kirilgan loginlar soni ✅: {log[1]}\n",
-                chat_id=user_id.tg_id
-            )
+            try:
+                if user_id.role == 'Admin':
+                    await bot.send_message(
+                    text=f"Kirish oxshamagan loginlar soni ❌: {len(log[0])}\nMuaffaqiyatli kirilgan loginlar soni ✅: {log[1]}\nKirilmagan loginlar\n\n{log[0]}",
+                    chat_id=user_id.tg_id
+                )
+                else:
+                    await bot.send_message(
+                        text=f"Kirish oxshamagan loginlar soni ❌: {len(log[0])}\nMuaffaqiyatli kirilgan loginlar soni ✅: {log[1]}\n",
+                        chat_id=user_id.tg_id
+                    )
+            except TelegramBadRequest as e:
+                continue
 
 @dp.message(F.text=='login')
 async def logins_all(message:Message):
