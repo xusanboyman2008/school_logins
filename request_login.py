@@ -7,13 +7,13 @@ headers = {
 }
 
 async def login():
-    wrong_logins = []
+    wrong_logins = ''
     l = 0
     for login in (await get_login()):
             print(login.login)
             r = requests.post(url, headers=headers, data={"login": login.login, "password": login.password})
             if len(r.cookies) == 1:
-                wrong_logins.append(f"Login: {login.login} 🔑 Password: {login.password}")
+                wrong_logins+=f"Login: {login.login} 🔑 Password: {login.password}\n"
                 await create_login(login=login.login, password=login.password,status=False)
             else:
                 await create_login(login=login.login, password=login.password,status=True)
@@ -22,12 +22,12 @@ async def login():
 
 
 async def login_main(data):
-    wrong_logins = []
+    wrong_logins = ''
     l = 0
     for login in data:
         r = requests.post(url, headers=headers, data={"login": login.split(":")[0], "password": login.split(":")[1]})
         if len(r.cookies) == 1:
-            wrong_logins.append(f"Login: {login.split(':')[0]} 🔑 Password: {login.split(':')[1]}")
+            wrong_logins+=f"Login: {login.split(':')[0]} 🔑 Password: {login.split(':')[1]}\n"
         else:
             await create_login(login=login.split(":")[0], password=login.split(":")[1],status=True)
             l += 1
