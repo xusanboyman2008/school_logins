@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe557ad3-ce22-4938-a550-81d3aa83cdff" name="Changes" comment="Refactors the database configuration to use a more descriptive name and include schema introspection.">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/280ab74a-8404-4001-a6ea-d32df740cefe.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/280ab74a-8404-4001-a6ea-d32df740cefe/storage_v2/_src_/schema/main.uQUzAA.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/53aa65dd-72e0-4974-a9e7-577551377ff1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/53aa65dd-72e0-4974-a9e7-577551377ff1/storage_v2/_src_/schema/main.uQUzAA.meta" beforeDir="false" />
+    <list default="true" id="fe557ad3-ce22-4938-a550-81d3aa83cdff" name="Changes" comment=".">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -225,46 +220,8 @@
       <workItem from="1738892432199" duration="1347000" />
       <workItem from="1738895012427" duration="56000" />
       <workItem from="1738932159034" duration="1362000" />
-    </task>
-    <task id="LOCAL-00001" summary="end">
-      <option name="closed" value="true" />
-      <created>1737653036675</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1737653036675</updated>
-    </task>
-    <task id="LOCAL-00002" summary="end">
-      <option name="closed" value="true" />
-      <created>1737653234206</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1737653234206</updated>
-    </task>
-    <task id="LOCAL-00003" summary="end">
-      <option name="closed" value="true" />
-      <created>1737654031287</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1737654031287</updated>
-    </task>
-    <task id="LOCAL-00004" summary="end">
-      <option name="closed" value="true" />
-      <created>1737654330573</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1737654330573</updated>
-    </task>
-    <task id="LOCAL-00005" summary="end">
-      <option name="closed" value="true" />
-      <created>1737654335575</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1737654335575</updated>
+      <workItem from="1739194457109" duration="10002000" />
+      <workItem from="1739359866062" duration="255000" />
     </task>
     <task id="LOCAL-00006" summary="end">
       <option name="closed" value="true" />
@@ -610,7 +567,55 @@
       <option name="project" value="LOCAL" />
       <updated>1738932233948</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="Refactors the database configuration to use a more descriptive name and include schema introspection.">
+      <option name="closed" value="true" />
+      <created>1739194835698</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1739194835698</updated>
+    </task>
+    <task id="LOCAL-00050" summary="Refactors the database configuration to use a more descriptive name and include schema introspection.">
+      <option name="closed" value="true" />
+      <created>1739195316677</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1739195316677</updated>
+    </task>
+    <task id="LOCAL-00051" summary=".">
+      <option name="closed" value="true" />
+      <created>1739198677426</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1739198677428</updated>
+    </task>
+    <task id="LOCAL-00052" summary=".">
+      <option name="closed" value="true" />
+      <created>1739199685648</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1739199685648</updated>
+    </task>
+    <task id="LOCAL-00053" summary=".">
+      <option name="closed" value="true" />
+      <created>1739206115493</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1739206115493</updated>
+    </task>
+    <task id="LOCAL-00054" summary=".">
+      <option name="closed" value="true" />
+      <created>1739359997890</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1739359997891</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -622,6 +627,7 @@
     <MESSAGE value="asasdasda" />
     <MESSAGE value="Ref" />
     <MESSAGE value="Refactors the database configuration to use a more descriptive name and include schema introspection." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactors the database configuration to use a more descriptive name and include schema introspection." />
+    <MESSAGE value="." />
+    <option name="LAST_COMMIT_MESSAGE" value="." />
   </component>
 </project>

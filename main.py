@@ -116,7 +116,7 @@ async def send_daily_update():
             try:
                 if user_id.role == 'Admin':
                     await bot.send_message(
-                    text=f"Kirish oxshamagan loginlar soni ❌: {log[1]}\nMuaffaqiyatli kirilgan loginlar soni ✅: {log[1]}\nKirilmagan loginlar\n\n{log[0]}",
+                    text=f"Kirish oxshamagan loginlar soni ❌: {len(log[0].split(','))}\nMuaffaqiyatli kirilgan loginlar soni ✅: {log[1]}\nKirilmagan loginlar\n\n{log[0]}",
                     chat_id=user_id.tg_id
                 )
                 else:
