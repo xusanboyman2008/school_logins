@@ -2,7 +2,8 @@ from sqlalchemy import Column, Integer, Boolean, String, select, BigInteger
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, AsyncAttrs
 from sqlalchemy.orm import DeclarativeBase
 
-DATABASE_URL = "postgresql+asyncpg://school_api_3_user:lIlmLBoVtBcD6yqJ3AAIFVPsFgi5GkQy@dpg-cuaqparqf0us73cat8fg-a.oregon-postgres.render.com/school_api_3"
+# DATABASE_URL = "postgresql+asyncpg://school_api_3_user:lIlmLBoVtBcD6yqJ3AAIFVPsFgi5GkQy@dpg-cuaqparqf0us73cat8fg-a.oregon-postgres.render.com/school_api_3"
+DATABASE_URL = "postgresql+asyncpg://neondb_owner:npg_RkIy9Ctf5bph@ep-fragrant-butterfly-a8t65nyw-pooler.eastus2.azure.neon.tech/neondb"
 # DATABASE_URL = "sqlite+aiosqlite:///database.sqlite3"
 engine = create_async_engine(DATABASE_URL)
 async_session = async_sessionmaker(engine)
